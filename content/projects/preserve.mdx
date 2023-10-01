@@ -1,0 +1,29 @@
+---
+title: 'Preserve'
+publishedAt: '2023-10-01'
+description: 'A universal search component for SaaS products'
+technologies: 'TypeScript, Next.js/React.js, Supabase/PostgreSQL, TailwindCSS'
+---
+
+Note: This project isn't published yet (still have to buy a domain, publish to NPM, etc.)
+
+#### Motivation
+
+SaaS products are normally hard to use and require user-education, reading documentation, etc. Search is more efficient, be it for commands, or 
+using "Ask AI" features using embeddings & context injection.
+
+#### Features
+    - An importable React.js/Next.js component, \<Search />
+    - Ability to add any code or no-code command to the component
+    - Abstractions for common uses to simplify the development process
+    - "Ask AI" feature trained on repository-specific documentation
+    - More smaller features (listing them all would be too long for this post)
+
+#### Issues/Solutions (Format: Issue => Solution)
+    - End-users will make typos/errors => make search fuzzy.
+    - End-users may be abroad, leading to high latency => use Edge Functions.
+    - Fetching data on page-load is inefficient (repetitive), unnecessary => Fetch data on app-load instead, and share data with components using a ContextProvider
+
+#### Results
+
+The component is built. I just have to register a domain, deploy Clerk, publish the related package to NPM, etc. It's looking great and I am excited to launch.
