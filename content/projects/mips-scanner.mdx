@@ -1,0 +1,42 @@
+---
+title: 'MIPS Scanner'
+publishedAt: '2023-10-01'
+description: 'A scanner for the MIPS assembly language'
+technologies: 'C++, Git'
+---
+
+Note: I will push this repository to GitHub soon, however, it may not include the code (which will be made available on request), 
+as this project was made for CS241, and my university disallows sharing project code publicly on the internet.
+
+#### Motivation
+
+The motivation here was to use the MIPS token lexeme DFA (deterministic finite automata) to develop 
+a scanner for the MIPS assembly language.
+
+#### Requirements
+
+Making a scanner for the MIPS assembly language required
+    1. Representing DFAs (deterministic finite automata) in code
+    2. Implementing a greedy algorithm to accept the longest valid lexemes
+    3. Using the MIPS token lexeme DFA to recognize lexeme kind to handle lexemes appropriately
+
+#### Strategy
+
+    1. DFAs needed to be represented in code, so the first step was developing a class to represent DFAs. Included
+    in this component was using a syntax for consuming DFAs (which was as follows):
+        - .STATES followed by a list of states, where a state ending with ! means it is an accepting state
+        - .TRANSITIONS followed by a list of transitions, of the format (fromState [characters] toState)
+    2. Next, the greedy algorithm of choice for accepting longest valid lexemes was a simplified maximal munch algorithm. The steps of
+    implementing this were as follows:
+        - Create a getNextState function in the DFA class, which requires an input character and a current state
+        - Implement the maximal munch algorithm using the getNextState function to know when to backtrack, etc.
+    3. Create I/O that uses the MIPS token lexeme DFA, with principles as follows:
+        1. If a lexeme is found, determine a kind using the state or the lexeme itself
+        2. If the kind should be filtered, discard the token (which stores lexeme and kind)
+        3. If the kind has restrictions, halt and produce an error if they are violated
+        4. If 2-3 are false, store the token lexeme and kind, add it to a sequence of tokens to be returned
+
+#### Results
+
+The program definitely works for simple MIPS programs, but has not been tested on larger, more comprehensive programs. I have now learnt
+a great amount about DFAs, maximal munch, and scanning languages.
